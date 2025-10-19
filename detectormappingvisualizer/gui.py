@@ -41,10 +41,29 @@ class DetectorMappingVisualizerGUI:
         self.service = GridVisualizationService()
         self.current_file = None
 
+        # Custom colormap
+        self.custom_colormap_colors = [
+            "#000000",  # Black
+            "#623200",  # Dark brown
+            "#944A00",  # Brown
+            "#C66300",  # Orange-brown
+            "#F77B02",  # Orange
+            "#FF9B19",  # Light orange
+            "#FFC642",  # Yellow-orange
+            "#FFEE6B",  # Yellow
+            "#EEF773",  # Light yellow
+            "#C5DE62",  # Yellow-green
+            "#9BC64A",  # Light green
+            "#73AD39",  # Green
+            "#4A8C22",  # Dark green
+            "#207311",  # Darker green
+            "#016300",  # Very dark green
+        ]
+
         # Visualization settings
         self.selected_date = tk.StringVar(value="Latest")
         self.factor_type = tk.StringVar(value="normalized_gauss_ageing_factor")
-        self.colormap = tk.StringVar(value="RdYlGn")
+        self.colormap = tk.StringVar(value="custom")  # Default to custom colormap
         self.vmin = tk.DoubleVar(value=0.4)
         self.vmax = tk.DoubleVar(value=1.2)
 
@@ -146,7 +165,7 @@ class DetectorMappingVisualizerGUI:
             textvariable=self.colormap,
             state="readonly",
             width=12,
-            values=["RdYlGn", "viridis", "plasma", "coolwarm", "RdBu", "seismic"]
+            values=["custom", "RdYlGn", "viridis", "plasma", "coolwarm", "RdBu", "seismic"]
         )
         colormap_combo.pack(side=tk.LEFT, padx=5)
         colormap_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_visualizations())
@@ -166,31 +185,44 @@ class DetectorMappingVisualizerGUI:
         main_frame = ttk.Frame(self.root)
         main_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=5, pady=5)
 
+        # Create two equal columns using grid with uniform sizing
+        main_frame.columnconfigure(0, weight=1, uniform="detector")  # FTA column
+        main_frame.columnconfigure(1, weight=1, uniform="detector")  # FTC column
+        main_frame.rowconfigure(0, weight=1)
+
         # Left panel - FTA detector
         fta_frame = ttk.LabelFrame(main_frame, text="FTA Detector", padding="10")
-        fta_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=5)
+        fta_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 2), pady=0)
+        
+        # Configure fta_frame to expand its content
+        fta_frame.rowconfigure(0, weight=1)
+        fta_frame.columnconfigure(0, weight=1)
 
         self.fta_figure = Figure(figsize=(8, 7), dpi=100)
         self.fta_canvas = FigureCanvasTkAgg(self.fta_figure, master=fta_frame)
-        self.fta_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        self.fta_canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
 
         # FTA toolbar
         fta_toolbar_frame = ttk.Frame(fta_frame)
-        fta_toolbar_frame.pack(side=tk.BOTTOM, fill=tk.X)
+        fta_toolbar_frame.grid(row=1, column=0, sticky="ew")
         self.fta_toolbar = NavigationToolbar2Tk(self.fta_canvas, fta_toolbar_frame)
         self.fta_toolbar.update()
 
         # Right panel - FTC detector
         ftc_frame = ttk.LabelFrame(main_frame, text="FTC Detector", padding="10")
-        ftc_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=5)
+        ftc_frame.grid(row=0, column=1, sticky="nsew", padx=(2, 0), pady=0)
+        
+        # Configure ftc_frame to expand its content
+        ftc_frame.rowconfigure(0, weight=1)
+        ftc_frame.columnconfigure(0, weight=1)
 
         self.ftc_figure = Figure(figsize=(8, 7), dpi=100)
         self.ftc_canvas = FigureCanvasTkAgg(self.ftc_figure, master=ftc_frame)
-        self.ftc_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        self.ftc_canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
 
         # FTC toolbar
         ftc_toolbar_frame = ttk.Frame(ftc_frame)
-        ftc_toolbar_frame.pack(side=tk.BOTTOM, fill=tk.X)
+        ftc_toolbar_frame.grid(row=1, column=0, sticky="ew")
         self.ftc_toolbar = NavigationToolbar2Tk(self.ftc_canvas, ftc_toolbar_frame)
         self.ftc_toolbar.update()
 
@@ -455,7 +487,11 @@ class DetectorMappingVisualizerGUI:
         ax = figure.add_subplot(111)
 
         # Get colormap
-        cmap = plt.get_cmap(self.colormap.get())
+        if self.colormap.get() == "custom":
+            from matplotlib.colors import ListedColormap
+            cmap = ListedColormap(self.custom_colormap_colors)
+        else:
+            cmap = plt.get_cmap(self.colormap.get())
 
         # Collect data points
         x_positions = []
@@ -590,7 +626,7 @@ class DetectorMappingVisualizerGUI:
     def reset_view(self):
         """Reset visualization settings to defaults."""
         self.factor_type.set("normalized_gauss_ageing_factor")
-        self.colormap.set("RdYlGn")
+        self.colormap.set("custom")  # Reset to custom colormap
         self.vmin.set(0.4)
         self.vmax.set(1.2)
         self.selected_date.set("Latest")

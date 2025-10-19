@@ -90,9 +90,12 @@ class TestGUI:
                 # Check default values
                 assert app.selected_date.get() == "Latest"
                 assert app.factor_type.get() == "normalized_gauss_ageing_factor"
-                assert app.colormap.get() == "RdYlGn"
+                assert app.colormap.get() == "custom"  # Default is now custom colormap
                 assert app.vmin.get() == 0.4
                 assert app.vmax.get() == 1.2
+                # Check that custom colormap colors are initialized
+                assert len(app.custom_colormap_colors) == 15
+                assert app.custom_colormap_colors[0] == "#000000"
                 
             finally:
                 root.destroy()
