@@ -11,5 +11,10 @@ __email__ = "alicefittoolkit@gmail.com"
 
 from detectormappingvisualizer.main import main
 
-__all__ = ["main"]
+try:
+    from detectormappingvisualizer.gui import launch_gui
+    __all__ = ["main", "launch_gui"]
+except ImportError:
+    # GUI dependencies not available
+    __all__ = ["main"]
 

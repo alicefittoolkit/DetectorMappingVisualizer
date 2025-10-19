@@ -28,7 +28,7 @@ The Detector Mapping Visualizer creates visual representations of detector chann
 
 ```bash
 # Clone the repository
-git clone https://github.com/AliceFIT/DetectorMappingVisualizer.git
+git clone https://github.com/alicefittoolkit/DetectorMappingVisualizer.git
 cd DetectorMappingVisualizer
 
 # Install in editable mode
@@ -53,30 +53,40 @@ pip install detectormappingvisualizer
 
 ## Quick Start
 
-### 1. Generate Example Data
+### 1. Launch the GUI (Easiest!)
+
+Simply run the command with no arguments to launch the graphical interface:
+
+```bash
+detectormappingvisualizer
+```
+
+Or explicitly:
+
+```bash
+detectormappingvisualizer --gui
+```
+
+The GUI provides:
+- **Easy file import** with drag-and-drop-like file dialog
+- **Side-by-side visualization** of both FTA and FTC detectors
+- **Interactive controls** for date selection, factor type, and colormaps
+- **Export options** for PNG and PDF formats
+- **Real-time updates** when changing visualization settings
+
+### 2. Command Line Interface (Advanced)
+
+For automation and scripting, use the CLI:
 
 ```bash
 # Generate example data for FTA detector
 detectormappingvisualizer --generate-example -o example_data.json --detector fta
 
-# Generate example data for FTC detector
-detectormappingvisualizer --generate-example -o example_data.json --detector ftc
-```
-
-### 2. List Available Detector Mappings
-
-```bash
+# List available detector mappings
 detectormappingvisualizer --list-mappings
-```
 
-### 3. Create a Visualization
-
-```bash
 # Create a PNG visualization
 detectormappingvisualizer -i example_data.json -o output.png -d fta
-
-# Create a PDF visualization
-detectormappingvisualizer -i example_data.json -o output.pdf -d ftc
 
 # Create an animated GIF
 detectormappingvisualizer -i example_data.json -o output.gif -d fta --gif
@@ -84,9 +94,36 @@ detectormappingvisualizer -i example_data.json -o output.gif -d fta --gif
 
 ## Usage
 
-### Command Line Interface
+### Graphical User Interface (GUI)
 
-The module provides a comprehensive CLI for all operations:
+The easiest way to use the Detector Mapping Visualizer is through its GUI:
+
+```bash
+# Launch GUI (default when no arguments provided)
+detectormappingvisualizer
+
+# Or explicitly
+detectormappingvisualizer --gui
+```
+
+**GUI Features:**
+- 📁 **Import Results**: Click to load JSON files with aging analysis data
+- 📊 **Dual View**: See FTA and FTC detectors side-by-side
+- 🎨 **Customization**: Change colormaps, date selection, and factor types
+- 💾 **Export**: Save visualizations as PNG or PDF
+- 🔄 **Live Updates**: Instant refresh when changing settings
+- 🖱️ **Interactive**: Zoom, pan, and explore with matplotlib tools
+
+**How to Use:**
+1. Click "📁 Import Results" button
+2. Select your JSON file with aging data
+3. Use the toolbar to select date, factor type, and colormap
+4. Both FTA and FTC visualizations update automatically
+5. Export individual visualizations using the File menu
+
+### Command Line Interface (CLI)
+
+For automation, scripting, and advanced usage:
 
 ```bash
 detectormappingvisualizer [OPTIONS]

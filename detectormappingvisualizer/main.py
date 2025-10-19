@@ -159,6 +159,16 @@ Examples:
         help="Show summary of input data",
     )
     parser.add_argument(
+        "--gui",
+        action="store_true",
+        help="Launch graphical user interface (default if no arguments)",
+    )
+    parser.add_argument(
+        "--cli",
+        action="store_true",
+        help="Force command-line interface mode",
+    )
+    parser.add_argument(
         "-v",
         "--verbose",
         action="store_true",
@@ -368,7 +378,28 @@ def main():
 
     This function will be called when the user clicks "Launch" in the
     FIT Detector Toolkit or runs the module from the command line.
+    
+    If no arguments are provided, launches the GUI. Otherwise, uses CLI mode.
     """
+    import sys
+    
+    # If no arguments provided (or only the script name), launch GUI
+    if len(sys.argv) == 1:
+        try:
+            from detectormappingvisualizer.gui import launch_gui
+            launch_gui()
+            return
+        except ImportError as e:
+            logger.error(f"Failed to import GUI module: {e}")
+            print("Error: GUI module not available. Use --help for CLI options.")
+            sys.exit(1)
+        except Exception as e:
+            logger.error(f"Failed to launch GUI: {e}")
+            print(f"Error launching GUI: {e}")
+            print("Use --help for CLI options.")
+            sys.exit(1)
+    
+    # CLI mode
     parser = create_parser()
     args = parser.parse_args()
 
@@ -381,6 +412,21 @@ def main():
     print("Detector Mapping Visualizer")
     print("FIT Detector Toolkit - Aging Analysis Visualization")
     print("=" * 60)
+
+    # Handle GUI launch
+    if args.gui:
+        try:
+            from detectormappingvisualizer.gui import launch_gui
+            launch_gui()
+            return
+        except ImportError as e:
+            logger.error(f"Failed to import GUI module: {e}")
+            print("Error: GUI module not available.")
+            sys.exit(1)
+        except Exception as e:
+            logger.error(f"Failed to launch GUI: {e}")
+            print(f"Error launching GUI: {e}")
+            sys.exit(1)
 
     # Handle list mappings
     if args.list_mappings:

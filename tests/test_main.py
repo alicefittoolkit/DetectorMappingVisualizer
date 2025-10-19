@@ -192,10 +192,13 @@ class TestMainIntegration:
             Path(input_path).unlink()
 
     def test_main_no_args(self):
-        """Test main with no arguments."""
+        """Test main with no arguments launches GUI."""
         with patch.object(sys, "argv", ["detectormappingvisualizer"]):
-            from detectormappingvisualizer.main import main
+            # Mock the GUI launch to prevent it from actually opening
+            with patch("detectormappingvisualizer.gui.launch_gui") as mock_launch:
+                from detectormappingvisualizer.main import main
 
-            with pytest.raises(SystemExit):
                 main()
+                # Should have called launch_gui
+                mock_launch.assert_called_once()
 
