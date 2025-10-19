@@ -1,0 +1,515 @@
+{
+  "datasets": [
+    {
+      "date": "2024-01-01",
+      "modules": [
+        {
+          "identifier": "A0",
+          "channels": [
+            {
+              "name": "CH01",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.0,
+                "normalized_weighted_ageing_factor": 0.98,
+                "gaussian_ageing_factor": 1.1,
+                "weighted_ageing_factor": 1.05,
+                "ageing_factor": 1.0
+              }
+            },
+            {
+              "name": "CH02",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.99,
+                "normalized_weighted_ageing_factor": 0.97,
+                "gaussian_ageing_factor": 1.09,
+                "weighted_ageing_factor": 1.04,
+                "ageing_factor": 0.99
+              }
+            },
+            {
+              "name": "CH03",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.01,
+                "normalized_weighted_ageing_factor": 0.99,
+                "gaussian_ageing_factor": 1.11,
+                "weighted_ageing_factor": 1.06,
+                "ageing_factor": 1.01
+              }
+            },
+            {
+              "name": "CH04",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.98,
+                "normalized_weighted_ageing_factor": 0.96,
+                "gaussian_ageing_factor": 1.08,
+                "weighted_ageing_factor": 1.03,
+                "ageing_factor": 0.98
+              }
+            },
+            {
+              "name": "CH05",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.02,
+                "normalized_weighted_ageing_factor": 1.0,
+                "gaussian_ageing_factor": 1.12,
+                "weighted_ageing_factor": 1.07,
+                "ageing_factor": 1.02
+              }
+            },
+            {
+              "name": "CH06",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH07",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.0,
+                "normalized_weighted_ageing_factor": 0.98,
+                "gaussian_ageing_factor": 1.1,
+                "weighted_ageing_factor": 1.05,
+                "ageing_factor": 1.0
+              }
+            },
+            {
+              "name": "CH08",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.99,
+                "normalized_weighted_ageing_factor": 0.97,
+                "gaussian_ageing_factor": 1.09,
+                "weighted_ageing_factor": 1.04,
+                "ageing_factor": 0.99
+              }
+            },
+            {
+              "name": "CH09",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.01,
+                "normalized_weighted_ageing_factor": 0.99,
+                "gaussian_ageing_factor": 1.11,
+                "weighted_ageing_factor": 1.06,
+                "ageing_factor": 1.01
+              }
+            },
+            {
+              "name": "CH10",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.98,
+                "normalized_weighted_ageing_factor": 0.96,
+                "gaussian_ageing_factor": 1.08,
+                "weighted_ageing_factor": 1.03,
+                "ageing_factor": 0.98
+              }
+            },
+            {
+              "name": "CH11",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.02,
+                "normalized_weighted_ageing_factor": 1.0,
+                "gaussian_ageing_factor": 1.12,
+                "weighted_ageing_factor": 1.07,
+                "ageing_factor": 1.02
+              }
+            },
+            {
+              "name": "CH12",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "identifier": "A6",
+          "channels": [
+            {
+              "name": "CH01",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.0,
+                "normalized_weighted_ageing_factor": 0.98,
+                "gaussian_ageing_factor": 1.1,
+                "weighted_ageing_factor": 1.05,
+                "ageing_factor": 1.0
+              }
+            },
+            {
+              "name": "CH02",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.99,
+                "normalized_weighted_ageing_factor": 0.97,
+                "gaussian_ageing_factor": 1.09,
+                "weighted_ageing_factor": 1.04,
+                "ageing_factor": 0.99
+              }
+            },
+            {
+              "name": "CH03",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.01,
+                "normalized_weighted_ageing_factor": 0.99,
+                "gaussian_ageing_factor": 1.11,
+                "weighted_ageing_factor": 1.06,
+                "ageing_factor": 1.01
+              }
+            },
+            {
+              "name": "CH04",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.98,
+                "normalized_weighted_ageing_factor": 0.96,
+                "gaussian_ageing_factor": 1.08,
+                "weighted_ageing_factor": 1.03,
+                "ageing_factor": 0.98
+              }
+            },
+            {
+              "name": "CH05",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.02,
+                "normalized_weighted_ageing_factor": 1.0,
+                "gaussian_ageing_factor": 1.12,
+                "weighted_ageing_factor": 1.07,
+                "ageing_factor": 1.02
+              }
+            },
+            {
+              "name": "CH06",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH07",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.0,
+                "normalized_weighted_ageing_factor": 0.98,
+                "gaussian_ageing_factor": 1.1,
+                "weighted_ageing_factor": 1.05,
+                "ageing_factor": 1.0
+              }
+            },
+            {
+              "name": "CH08",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.99,
+                "normalized_weighted_ageing_factor": 0.97,
+                "gaussian_ageing_factor": 1.09,
+                "weighted_ageing_factor": 1.04,
+                "ageing_factor": 0.99
+              }
+            },
+            {
+              "name": "CH09",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.01,
+                "normalized_weighted_ageing_factor": 0.99,
+                "gaussian_ageing_factor": 1.11,
+                "weighted_ageing_factor": 1.06,
+                "ageing_factor": 1.01
+              }
+            },
+            {
+              "name": "CH10",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.98,
+                "normalized_weighted_ageing_factor": 0.96,
+                "gaussian_ageing_factor": 1.08,
+                "weighted_ageing_factor": 1.03,
+                "ageing_factor": 0.98
+              }
+            },
+            {
+              "name": "CH11",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 1.02,
+                "normalized_weighted_ageing_factor": 1.0,
+                "gaussian_ageing_factor": 1.12,
+                "weighted_ageing_factor": 1.07,
+                "ageing_factor": 1.02
+              }
+            },
+            {
+              "name": "CH12",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2024-02-01",
+      "modules": [
+        {
+          "identifier": "A0",
+          "channels": [
+            {
+              "name": "CH01",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.95,
+                "normalized_weighted_ageing_factor": 0.93,
+                "gaussian_ageing_factor": 1.05,
+                "weighted_ageing_factor": 1.0,
+                "ageing_factor": 0.95
+              }
+            },
+            {
+              "name": "CH02",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.94,
+                "normalized_weighted_ageing_factor": 0.92,
+                "gaussian_ageing_factor": 1.04,
+                "weighted_ageing_factor": 0.99,
+                "ageing_factor": 0.94
+              }
+            },
+            {
+              "name": "CH03",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.96,
+                "normalized_weighted_ageing_factor": 0.94,
+                "gaussian_ageing_factor": 1.06,
+                "weighted_ageing_factor": 1.01,
+                "ageing_factor": 0.96
+              }
+            },
+            {
+              "name": "CH04",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.93,
+                "normalized_weighted_ageing_factor": 0.91,
+                "gaussian_ageing_factor": 1.03,
+                "weighted_ageing_factor": 0.98,
+                "ageing_factor": 0.93
+              }
+            },
+            {
+              "name": "CH05",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH06",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.92,
+                "normalized_weighted_ageing_factor": 0.9,
+                "gaussian_ageing_factor": 1.02,
+                "weighted_ageing_factor": 0.97,
+                "ageing_factor": 0.92
+              }
+            },
+            {
+              "name": "CH07",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.95,
+                "normalized_weighted_ageing_factor": 0.93,
+                "gaussian_ageing_factor": 1.05,
+                "weighted_ageing_factor": 1.0,
+                "ageing_factor": 0.95
+              }
+            },
+            {
+              "name": "CH08",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.94,
+                "normalized_weighted_ageing_factor": 0.92,
+                "gaussian_ageing_factor": 1.04,
+                "weighted_ageing_factor": 0.99,
+                "ageing_factor": 0.94
+              }
+            },
+            {
+              "name": "CH09",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.96,
+                "normalized_weighted_ageing_factor": 0.94,
+                "gaussian_ageing_factor": 1.06,
+                "weighted_ageing_factor": 1.01,
+                "ageing_factor": 0.96
+              }
+            },
+            {
+              "name": "CH10",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.93,
+                "normalized_weighted_ageing_factor": 0.91,
+                "gaussian_ageing_factor": 1.03,
+                "weighted_ageing_factor": 0.98,
+                "ageing_factor": 0.93
+              }
+            },
+            {
+              "name": "CH11",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH12",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.92,
+                "normalized_weighted_ageing_factor": 0.9,
+                "gaussian_ageing_factor": 1.02,
+                "weighted_ageing_factor": 0.97,
+                "ageing_factor": 0.92
+              }
+            }
+          ]
+        },
+        {
+          "identifier": "A6",
+          "channels": [
+            {
+              "name": "CH01",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.95,
+                "normalized_weighted_ageing_factor": 0.93,
+                "gaussian_ageing_factor": 1.05,
+                "weighted_ageing_factor": 1.0,
+                "ageing_factor": 0.95
+              }
+            },
+            {
+              "name": "CH02",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.94,
+                "normalized_weighted_ageing_factor": 0.92,
+                "gaussian_ageing_factor": 1.04,
+                "weighted_ageing_factor": 0.99,
+                "ageing_factor": 0.94
+              }
+            },
+            {
+              "name": "CH03",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.96,
+                "normalized_weighted_ageing_factor": 0.94,
+                "gaussian_ageing_factor": 1.06,
+                "weighted_ageing_factor": 1.01,
+                "ageing_factor": 0.96
+              }
+            },
+            {
+              "name": "CH04",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.93,
+                "normalized_weighted_ageing_factor": 0.91,
+                "gaussian_ageing_factor": 1.03,
+                "weighted_ageing_factor": 0.98,
+                "ageing_factor": 0.93
+              }
+            },
+            {
+              "name": "CH05",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH06",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.92,
+                "normalized_weighted_ageing_factor": 0.9,
+                "gaussian_ageing_factor": 1.02,
+                "weighted_ageing_factor": 0.97,
+                "ageing_factor": 0.92
+              }
+            },
+            {
+              "name": "CH07",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.95,
+                "normalized_weighted_ageing_factor": 0.93,
+                "gaussian_ageing_factor": 1.05,
+                "weighted_ageing_factor": 1.0,
+                "ageing_factor": 0.95
+              }
+            },
+            {
+              "name": "CH08",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.94,
+                "normalized_weighted_ageing_factor": 0.92,
+                "gaussian_ageing_factor": 1.04,
+                "weighted_ageing_factor": 0.99,
+                "ageing_factor": 0.94
+              }
+            },
+            {
+              "name": "CH09",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.96,
+                "normalized_weighted_ageing_factor": 0.94,
+                "gaussian_ageing_factor": 1.06,
+                "weighted_ageing_factor": 1.01,
+                "ageing_factor": 0.96
+              }
+            },
+            {
+              "name": "CH10",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.93,
+                "normalized_weighted_ageing_factor": 0.91,
+                "gaussian_ageing_factor": 1.03,
+                "weighted_ageing_factor": 0.98,
+                "ageing_factor": 0.93
+              }
+            },
+            {
+              "name": "CH11",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.97,
+                "normalized_weighted_ageing_factor": 0.95,
+                "gaussian_ageing_factor": 1.07,
+                "weighted_ageing_factor": 1.02,
+                "ageing_factor": 0.97
+              }
+            },
+            {
+              "name": "CH12",
+              "ageing_factors": {
+                "normalized_gauss_ageing_factor": 0.92,
+                "normalized_weighted_ageing_factor": 0.9,
+                "gaussian_ageing_factor": 1.02,
+                "weighted_ageing_factor": 0.97,
+                "ageing_factor": 0.92
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,9 @@
+# Runtime dependencies for detectormappingvisualizer
+
+# Core visualization dependencies
+matplotlib>=3.5.0
+numpy>=1.20.0
+
+# Image processing for GIF creation
+Pillow>=9.0.0
+
