@@ -167,6 +167,30 @@ class DetectorMappingVisualizerGUI:
         # Separator
         ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=10, fill=tk.Y)
 
+        # Min/Max value inputs
+        ttk.Label(toolbar, text="Min:").pack(side=tk.LEFT, padx=(0, 2))
+        vmin_entry = ttk.Entry(
+            toolbar,
+            textvariable=self.vmin,
+            width=8
+        )
+        vmin_entry.pack(side=tk.LEFT, padx=2)
+        vmin_entry.bind("<KeyRelease>", lambda e: self.refresh_visualizations())
+        vmin_entry.bind("<Return>", lambda e: self.refresh_visualizations())
+        
+        ttk.Label(toolbar, text="Max:").pack(side=tk.LEFT, padx=(5, 2))
+        vmax_entry = ttk.Entry(
+            toolbar,
+            textvariable=self.vmax,
+            width=8
+        )
+        vmax_entry.pack(side=tk.LEFT, padx=2)
+        vmax_entry.bind("<KeyRelease>", lambda e: self.refresh_visualizations())
+        vmax_entry.bind("<Return>", lambda e: self.refresh_visualizations())
+
+        # Separator
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=10, fill=tk.Y)
+
         # Custom title input
         ttk.Label(toolbar, text="Custom Title:").pack(side=tk.LEFT, padx=5)
         custom_title_entry = ttk.Entry(
@@ -431,6 +455,17 @@ class DetectorMappingVisualizerGUI:
             return
 
         try:
+            # Validate min/max values
+            try:
+                vmin_val = float(self.vmin.get())
+                vmax_val = float(self.vmax.get())
+                if vmin_val >= vmax_val:
+                    messagebox.showerror("Invalid Values", "Minimum value must be less than maximum value")
+                    return
+            except (ValueError, tk.TclError):
+                messagebox.showerror("Invalid Values", "Min and Max must be valid numbers")
+                return
+
             self.status_label.config(text="Updating visualizations...")
             self.root.update()
 
