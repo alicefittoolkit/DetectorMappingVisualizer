@@ -23,6 +23,7 @@ class DataLoader:
         "channel": ["name", "ageing_factors"],
     }
 
+    # This constant is only used for example data generation
     AGEING_FACTOR_TYPES = [
         "normalized_gauss_ageing_factor",
         "normalized_weighted_ageing_factor",
@@ -257,14 +258,12 @@ class DataLoader:
                 f"channel {channel_idx}: 'ageing_factors' must be a dictionary"
             )
 
-        # Check that at least one valid ageing factor exists
+        # Check that at least one valid ageing factor exists (any key with numeric value)
         has_valid_factor = False
-        for factor_type in DataLoader.AGEING_FACTOR_TYPES:
-            if factor_type in ageing_factors:
-                factor_value = ageing_factors[factor_type]
-                if isinstance(factor_value, (int, float)):
-                    has_valid_factor = True
-                    break
+        for factor_type, factor_value in ageing_factors.items():
+            if isinstance(factor_value, (int, float)):
+                has_valid_factor = True
+                break
 
         if not has_valid_factor:
             logger.warning(

@@ -8,8 +8,33 @@ import pytest
 from detectormappingvisualizer.data_loader import DataLoader
 from detectormappingvisualizer.grid_visualization_service import (
     GridVisualizationService,
+    format_parameter_name,
     normalize_pm_channel,
 )
+
+
+class TestFormatParameterName:
+    """Test cases for the format_parameter_name function."""
+
+    def test_format_standard_parameter(self):
+        """Test formatting of standard parameter name."""
+        result = format_parameter_name("normalized_gauss_ageing_factor")
+        assert result == "Normalized Gauss Ageing Factor"
+
+    def test_format_simple_parameter(self):
+        """Test formatting of simple parameter name."""
+        result = format_parameter_name("test_parameter")
+        assert result == "Test Parameter"
+
+    def test_format_single_word(self):
+        """Test formatting of single word parameter."""
+        result = format_parameter_name("ageing_factor")
+        assert result == "Ageing Factor"
+
+    def test_format_no_underscores(self):
+        """Test formatting of parameter with no underscores."""
+        result = format_parameter_name("testparameter")
+        assert result == "Testparameter"
 
 
 class TestNormalizePmChannel:
@@ -248,4 +273,34 @@ class TestGridVisualizationService:
 
         # Should have the same number of mappings after refresh
         assert len(service.mappings_cache) == initial_count
+
+    def test_extract_available_parameters(self):
+        """Test extracting available parameters from data."""
+        service = GridVisualizationService()
+        data = DataLoader.create_example_data(
+            detector_type="fta",
+            num_datasets=2,
+            modules_per_dataset=2,
+            channels_per_module=12,
+        )
+
+        parameters = service.extract_available_parameters(data)
+
+        assert len(parameters) > 0
+        assert all(isinstance(p, str) for p in parameters)
+        # Should contain expected parameters
+        assert "normalized_gauss_ageing_factor" in parameters
+        assert "normalized_weighted_ageing_factor" in parameters
+
+    def test_extract_available_parameters_custom_parameter(self):
+        """Test extracting custom parameter from data."""
+        service = GridVisualizationService()
+        # Create custom data with a custom parameter
+        custom_data = DataLoader.create_example_data()
+        # Add a custom parameter to the first channel
+        custom_data["datasets"][0]["modules"][0]["channels"][0]["ageing_factors"]["custom_test_param"] = 1.5
+
+        parameters = service.extract_available_parameters(custom_data)
+
+        assert "custom_test_param" in parameters
 

@@ -13,6 +13,20 @@ from matplotlib.figure import Figure
 logger = logging.getLogger(__name__)
 
 
+def format_parameter_name(param_key: str) -> str:
+    """Format a parameter key into a readable display name.
+    
+    Replaces underscores with spaces and capitalizes each word.
+    
+    Args:
+        param_key: Parameter key (e.g., 'test_parameter', 'normalized_gauss_ageing_factor')
+        
+    Returns:
+        Formatted display name (e.g., 'Test Parameter', 'Normalized Gauss Ageing Factor')
+    """
+    return param_key.replace("_", " ").title()
+
+
 def normalize_pm_channel(pm: str, channel: str) -> str:
     """Normalize PM and channel names for consistent matching.
 
@@ -234,6 +248,31 @@ class GridVisualizationService:
                 dates.append(date)
         return sorted(dates)
 
+    def extract_available_parameters(self, results_data: Dict) -> List[str]:
+        """Extract all available ageing factor parameter names from results data.
+
+        Scans all channels across all datasets to find unique parameter keys.
+
+        Args:
+            results_data: Analysis results data
+
+        Returns:
+            Sorted list of unique parameter names found in the data
+        """
+        parameters = set()
+
+        for dataset in results_data.get("datasets", []):
+            for module in dataset.get("modules", []):
+                for channel in module.get("channels", []):
+                    ageing_factors = channel.get("ageing_factors", {})
+                    if isinstance(ageing_factors, dict):
+                        # Only include keys with numeric values
+                        for key, value in ageing_factors.items():
+                            if isinstance(value, (int, float)):
+                                parameters.add(key)
+
+        return sorted(list(parameters))
+
     def _extract_ageing_factors(
         self,
         results_data: Dict,
@@ -402,15 +441,8 @@ class GridVisualizationService:
         if results_data and results_data.get("datasets"):
             reference_date = results_data["datasets"][0].get("date")
 
-        # Set title with date comparison
-        factor_display_names = {
-            "normalized_gauss_ageing_factor": "Normalized Gaussian",
-            "normalized_weighted_ageing_factor": "Normalized Weighted",
-            "gaussian_ageing_factor": "Gaussian",
-            "weighted_ageing_factor": "Weighted",
-            "ageing_factor": "Ageing Factor",
-        }
-        display_name = factor_display_names.get(ageing_factor_type, ageing_factor_type)
+        # Format the ageing factor type for display
+        display_name = format_parameter_name(ageing_factor_type)
 
         # Main title with date comparison
         if selected_date and reference_date and reference_date != selected_date:

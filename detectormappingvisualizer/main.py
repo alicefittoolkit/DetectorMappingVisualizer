@@ -95,14 +95,7 @@ Examples:
         "--factor-type",
         type=str,
         default="normalized_gauss_ageing_factor",
-        choices=[
-            "normalized_gauss_ageing_factor",
-            "normalized_weighted_ageing_factor",
-            "gaussian_ageing_factor",
-            "weighted_ageing_factor",
-            "ageing_factor",
-        ],
-        help="Type of aging factor to display (default: normalized_gauss_ageing_factor)",
+        help="Type of aging factor to display (any parameter from the JSON file, default: normalized_gauss_ageing_factor)",
     )
     parser.add_argument(
         "--colormap",

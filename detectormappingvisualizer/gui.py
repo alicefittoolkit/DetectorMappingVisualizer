@@ -64,6 +64,7 @@ class DetectorMappingVisualizerGUI:
         self.selected_date = tk.StringVar(value="Latest")
         self.factor_type = tk.StringVar(value="normalized_gauss_ageing_factor")
         self.colormap = tk.StringVar(value="custom")  # Default to custom colormap
+        self.custom_title = tk.StringVar(value="")
         self.vmin = tk.DoubleVar(value=0.4)
         self.vmax = tk.DoubleVar(value=1.2)
 
@@ -139,21 +140,14 @@ class DetectorMappingVisualizerGUI:
 
         # Factor type selection
         ttk.Label(toolbar, text="Factor Type:").pack(side=tk.LEFT, padx=5)
-        factor_combo = ttk.Combobox(
+        self.factor_combo = ttk.Combobox(
             toolbar,
             textvariable=self.factor_type,
             state="readonly",
-            width=25,
-            values=[
-                "normalized_gauss_ageing_factor",
-                "normalized_weighted_ageing_factor",
-                "gaussian_ageing_factor",
-                "weighted_ageing_factor",
-                "ageing_factor"
-            ]
+            width=25
         )
-        factor_combo.pack(side=tk.LEFT, padx=5)
-        factor_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_visualizations())
+        self.factor_combo.pack(side=tk.LEFT, padx=5)
+        self.factor_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_visualizations())
 
         # Separator
         ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=10, fill=tk.Y)
@@ -169,6 +163,28 @@ class DetectorMappingVisualizerGUI:
         )
         colormap_combo.pack(side=tk.LEFT, padx=5)
         colormap_combo.bind("<<ComboboxSelected>>", lambda e: self.refresh_visualizations())
+
+        # Separator
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=10, fill=tk.Y)
+
+        # Custom title input
+        ttk.Label(toolbar, text="Custom Title:").pack(side=tk.LEFT, padx=5)
+        custom_title_entry = ttk.Entry(
+            toolbar,
+            textvariable=self.custom_title,
+            width=30
+        )
+        custom_title_entry.pack(side=tk.LEFT, padx=5)
+        custom_title_entry.bind("<KeyRelease>", lambda e: self.refresh_visualizations())
+        
+        # Clear button
+        clear_title_btn = ttk.Button(
+            toolbar,
+            text="Clear",
+            command=self.clear_custom_title,
+            width=8
+        )
+        clear_title_btn.pack(side=tk.LEFT, padx=2)
 
         # Refresh button
         refresh_btn = ttk.Button(
@@ -303,6 +319,14 @@ class DetectorMappingVisualizerGUI:
             self.date_combo["values"] = ["Latest"] + dates
             self.selected_date.set("Latest")
 
+            # Update factor type selector with available parameters
+            available_params = self.service.extract_available_parameters(self.data)
+            if available_params:
+                self.factor_combo["values"] = available_params
+                # Set to first parameter if current value is not in the list
+                if self.factor_type.get() not in available_params:
+                    self.factor_type.set(available_params[0])
+
             # Update UI
             self.file_label.config(text=f"File: {self.current_file.name}")
             self.status_label.config(
@@ -383,6 +407,14 @@ class DetectorMappingVisualizerGUI:
                 dates = self.service.get_available_dates(self.data)
                 self.date_combo["values"] = ["Latest"] + dates
                 self.selected_date.set("Latest")
+
+                # Update factor type selector with available parameters
+                available_params = self.service.extract_available_parameters(self.data)
+                if available_params:
+                    self.factor_combo["values"] = available_params
+                    # Set to first parameter if current value is not in the list
+                    if self.factor_type.get() not in available_params:
+                        self.factor_type.set(available_params[0])
 
                 self.file_label.config(text=f"File: {self.current_file.name}")
                 self.refresh_visualizations()
@@ -533,17 +565,13 @@ class DetectorMappingVisualizerGUI:
             ax.text(x, y, text, ha="center", va="center", color=text_color, fontsize=7)
 
         # Set title
-        factor_display_names = {
-            "normalized_gauss_ageing_factor": "Normalized Gaussian",
-            "normalized_weighted_ageing_factor": "Normalized Weighted",
-            "gaussian_ageing_factor": "Gaussian",
-            "weighted_ageing_factor": "Weighted",
-            "ageing_factor": "Ageing Factor",
-        }
-        display_name = factor_display_names.get(
-            self.factor_type.get(),
-            self.factor_type.get()
-        )
+        from detectormappingvisualizer.grid_visualization_service import format_parameter_name
+        
+        # Use custom title if provided, otherwise auto-format the parameter name
+        if self.custom_title.get().strip():
+            display_name = self.custom_title.get().strip()
+        else:
+            display_name = format_parameter_name(self.factor_type.get())
 
         date_str = date if date else "Latest"
         title = f"{display_name} - {detector.upper()}\n{date_str}"
@@ -623,6 +651,12 @@ class DetectorMappingVisualizerGUI:
             self.status_label.config(text="Error exporting visualization")
             logger.exception("Failed to export visualization")
 
+    def clear_custom_title(self):
+        """Clear the custom title field."""
+        self.custom_title.set("")
+        if self.data is not None:
+            self.refresh_visualizations()
+
     def reset_view(self):
         """Reset visualization settings to defaults."""
         self.factor_type.set("normalized_gauss_ageing_factor")
@@ -630,6 +664,7 @@ class DetectorMappingVisualizerGUI:
         self.vmin.set(0.4)
         self.vmax.set(1.2)
         self.selected_date.set("Latest")
+        self.custom_title.set("")
 
         if self.data is not None:
             self.refresh_visualizations()
